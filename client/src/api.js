@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE = 'http://localhost:5000/api';
+const BASE = 'https://mantra4change-pbl.onrender.com/api';
 
 export const getDashboard = (params) => axios.get(`${BASE}/dashboard`, { params });
 export const getFilters = () => axios.get(`${BASE}/dashboard/filters`);

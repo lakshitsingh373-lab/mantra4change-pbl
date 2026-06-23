@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getGrants, getGrantList } from '../api';
 
+const API = 'https://mantra4change-pbl.onrender.com';
+
 export default function GrantPage() {
   const [grantList, setGrantList] = useState([]);
   const [sel, setSel] = useState({ grantId: '', month: '' });
@@ -63,7 +65,7 @@ export default function GrantPage() {
                 onClick={async () => {
                   setGenerating(true);
                   setNarrative(null);
-                  const r = await axios.post('http://localhost:5000/api/grant/narrative', {
+                  const r = await axios.post(`${API}/api/grant/narrative`, {
                     grantName: p.grantName, donor: p.donor, month: p.reportingMonth,
                     pblCompletionRate: p.pblCompletionRate, evidenceRate: p.evidenceRate,
                     attendanceRate: p.attendanceRate, sampledSchools: p.sampledSchools,
@@ -121,7 +123,7 @@ export default function GrantPage() {
                 {data.media.map((m, i) => (
                   <div key={i} style={{ background: '#1e293b', borderRadius: 10, overflow: 'hidden' }}>
                     <img
-                      src={`http://localhost:5000/images/${m.fileName}`}
+                      src={`${API}/images/${m.fileName}`}
                       alt={m.title}
                       style={{ width: '100%', height: 180, objectFit: 'cover' }}
                       onError={e => { e.target.style.display = 'none'; }}
